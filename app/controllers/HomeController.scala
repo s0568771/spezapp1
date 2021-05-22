@@ -12,8 +12,4 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok(Json.obj("content" -> "Scala Play React Seed!"))
   }
 
-  def env() = Action { implicit request: Request[AnyContent] =>
-//    Ok("Nothing to see here")
-    Ok(System.getenv("JDBC_DATABASE_URL"))
-  }
 }

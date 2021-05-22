@@ -1,13 +1,5 @@
 import React, {Component} from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
-
-import reactLogo from './images/react.svg';
-import playLogo from './images/play.svg';
-import scalaLogo from './images/scala.svg';
+import {BrowserRouter as Router} from 'react-router-dom';
 import Client from "./Client";
 
 import './App.css';

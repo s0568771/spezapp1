@@ -28,6 +28,7 @@ def isNodeModulesInstalled(implicit dir: File): Boolean = (dir / "node_modules")
 def runNpmInstall(implicit dir: File): Int =
   if (isNodeModulesInstalled) Success else runOnCommandline(FrontendCommands.dependencyInstall)
 
+
 // Execute task if node modules are installed, else return Error status.
 def ifNodeModulesInstalled(task: => Int)(implicit dir: File): Int =
   if (runNpmInstall == Success) task
@@ -38,7 +39,6 @@ def executeUiTests(implicit dir: File): Int = ifNodeModulesInstalled(runOnComman
 
 // Execute frontend prod build task. Update to change the frontend prod build task.
 def executeProdBuild(implicit dir: File): Int = ifNodeModulesInstalled(runOnCommandline(FrontendCommands.build))
-
 
 // Create frontend build tasks for prod, dev and test execution.
 
