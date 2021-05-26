@@ -51,10 +51,10 @@ lazy val `ui-test` = taskKey[Unit]("Run UI tests when testing application.")
 
 lazy val `ui-prod-build` = taskKey[Unit]("Run UI build when packaging the application.")
 
-`ui-prod-build` := {
-  implicit val userInterfaceRoot = baseDirectory.value / "ui"
-  if (executeProdBuild != Success) throw new Exception("Oops! UI Build crashed.")
-}
+//`ui-prod-build` := {
+//  implicit val userInterfaceRoot = baseDirectory.value / "ui"
+//  if (executeProdBuild != Success) throw new Exception("Oops! UI Build crashed.")
+//}
 
 // Execute frontend prod build task prior to play dist execution.
 dist := (dist dependsOn `ui-prod-build`).value
