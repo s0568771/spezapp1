@@ -52,7 +52,7 @@ lazy val `ui-test` = taskKey[Unit]("Run UI tests when testing application.")
 lazy val `ui-prod-build` = taskKey[Unit]("Run UI build when packaging the application.")
 
 `ui-prod-build` := {
-  implicit val userInterfaceRoot = baseDirectory.value / "ui"
+  implicit val userInterfaceRoot = baseDirectory.value
   if (executeProdBuild != Success) throw new Exception("Oops! UI Build crashed.")
 }
 
