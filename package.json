@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cd ui && react-scripts start",
     "dev": "serve -s build",
-    "build": "cd ui && rimraf ../public && react-scripts build && ncp build ../public && rimraf build",
+    "build": "cd ui && rimraf ui/public && react-scripts build && ncp build ui/public && rimraf build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
