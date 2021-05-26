@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "cd ui && react-scripts start",
+    "start": "react-scripts start",
     "dev": "serve -s build",
-    "build": "cd ui && rimraf ../public && react-scripts build && ncp build ../public && rimraf build",
+    "build": "rimraf ../../public && react-scripts build && ncp build ../../public && rimraf build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
