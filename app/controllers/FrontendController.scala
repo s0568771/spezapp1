@@ -19,10 +19,10 @@ class FrontendController @Inject()(mensaDao: MensaDAO, assets: Assets, errorHand
 
   def index: Action[AnyContent] = assets.at("index.html")
 
-//  def env() = Action { implicit request: Request[AnyContent] =>
-////    Ok("Nothing to see here")
-//    Ok(System.getenv("JDBC_DATABASE_URL"))
-//  }
+  def env() = Action { implicit request: Request[AnyContent] =>
+//    Ok("Nothing to see here")
+    Ok(System.getenv("JDBC_DATABASE_URL"))
+  }
 
   def assetOrDefault(resource: String): Action[AnyContent] = if (resource.startsWith(config.get[String]("apiPrefix"))){
     Action.async(r => errorHandler.onClientError(r, NOT_FOUND, "Not found"))

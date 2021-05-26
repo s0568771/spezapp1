@@ -4,7 +4,7 @@
 
 # Serve index page from public directory
 GET     /                           controllers.FrontendController.index()
-GET     /env                        controllers.HomeController.env()
+GET     /api/env                        controllers.FrontendController.env()
 #GET     /env                        controllers.FrontendController.env()
 #GET     /api/get                    controllers.FrontendController.getMensen()
 
