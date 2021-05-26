@@ -4,6 +4,9 @@
 
 # Serve index page from public directory
 GET     /                           controllers.FrontendController.index()
+GET     /env                        controllers.HomeController.env()
+#GET     /env                        controllers.FrontendController.env()
+#GET     /api/get                    controllers.FrontendController.getMensen()
 
 # An example route (Prefix all API routes with apiPrefix defined in application.conf)
 GET     /api/summary                controllers.HomeController.appSummary
