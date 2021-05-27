@@ -4,7 +4,12 @@
 
 # Serve index page from public directory
 GET     /                           controllers.FrontendController.index()
-GET     /api/env                        controllers.FrontendController.env()
+GET     /api/env                    controllers.HomeController.env()
+GET     /api/getAll                 controllers.HomeController.getAll()
+GET     /api/getAllFood             controllers.HomeController.getAllFood()
+
+POST    /api/insert                 controllers.HomeController.insertProdukt
+POST    /api/insertFood             controllers.HomeController.insertFood
 #GET     /env                        controllers.FrontendController.env()
 #GET     /api/get                    controllers.FrontendController.getMensen()
 

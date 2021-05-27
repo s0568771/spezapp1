@@ -28,8 +28,7 @@ class MensaDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
     def name = column[String]("NAME")
     def city = column[String]("CITY")
     def address = column[String]("ADDRESS")
-    def coordinates = column[String]("COORDINATES")
 
-    def * = (id, name, city, address, coordinates) <> (Mensa.tupled, Mensa.unapply)
+    def * = (id, name, city, address) <> (Mensa.tupled, Mensa.unapply)
   }
 }
