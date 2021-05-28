@@ -44,10 +44,12 @@ class HomeController @Inject()(foodDAO: FoodDAO, mensaDAO: MensaDAO, cc: Control
     val food: Food = foodForm.bindFromRequest.get
     foodDAO.insert(food).map(_ => Redirect(routes.FrontendController.index()))
   }
-  def getAllFood = Action.async { implicit request =>
+  def getAllFood() = Action.async { implicit request =>
     //    val mensa: Mensa = mensaForm.bindFromRequest.get
-    foodDAO.all().map { food => Ok(Json.toJson(food.toString())) }
+//    foodDAO.all().map{ food => Ok( food.map(_.id) ) }
+    foodDAO.all().map{ food => Ok(Json.toJson(food.toString))}
   }
+
 
     val mensaForm = Form(
       mapping(
