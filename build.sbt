@@ -6,9 +6,9 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala).settings(
   watchSources ++= (baseDirectory.value / "public/ui" ** "*").get
 )
 
-//val appDependencies = Seq(
-//  filters
-//)
+val appDependencies = Seq(
+  filters
+)
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
