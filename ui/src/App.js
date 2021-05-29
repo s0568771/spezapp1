@@ -63,16 +63,19 @@ class App extends Component {
     });
     this.onSubmit()
   }
+
   onSubmit() {
     if (this.state.lastMensa !== '' && this.state.date !== ''){
 
-      axios.get('http://localhost:3000/api/getAllFood', this.getOption())
+      // Favoriten aus DB abrufen
+      axios.get('http://localhost:9000/api/getAllFood')
         .then((res) => {
           this.state.favfood = res.data;
           this.setState({ favfood: this.state.favfood });
-          console.log(this.state)
         })
 
+      // Speisen aus Mensa X am Tag Y abrufen, und anschließend prüfen,
+      // ob eine Speise in Favoriten ist, setze dann Fav=true
       this.state.food = []
       const url = 'https://openmensa.org/api/v2/canteens/'+this.state.lastMensa+'/days/'+this.state.date+'/meals'
       axios.get(url)
@@ -159,7 +162,7 @@ class App extends Component {
           "name": fname
         }
         // console.log(body)
-        axios.post('http://localhost:3000/api/insertFood', body, this.getOption());
+        axios.post('http://localhost:3000/api/insertFood', body);
       }
     })
 
