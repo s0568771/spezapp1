@@ -131,13 +131,13 @@ class App extends Component {
   }
 
   handleChange(event) {
-    // const options = {
-    //   headers: {
-    //     "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
-    //     // "Access-Control-Allow-Origin": "http://localhost/",
-    //     "Access-Control-Allow-Methods": "GET,POST"
-    //   }
-    // };
+    const options = {
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
+        "Access-Control-Allow-Origin": [".herokuapp.com", "localhost:9000", "localhost:3000"],
+        "Access-Control-Allow-Methods": "GET,POST"
+      }
+    };
 
     this.state.food.forEach( f => {
       const fid = f.id.toString();
@@ -148,7 +148,7 @@ class App extends Component {
           "name": fname
         }
         console.log(body)
-        axios.post('http://localhost:3000/api/insertFood', body);
+        axios.post('http://localhost:3000/api/insertFood', body, options);
       }
     })
 
