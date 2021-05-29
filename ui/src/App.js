@@ -97,7 +97,7 @@ class App extends Component {
       mode: 'cors',
       headers: {
         "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "null",
         "Access-Control-Allow-Methods": "GET,POST"
       }
     };
