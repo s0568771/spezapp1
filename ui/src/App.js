@@ -68,7 +68,7 @@ class App extends Component {
   onSubmit() {
     if (this.state.lastMensa !== '' && this.state.date !== ''){
 
-      axios.get('http://localhost:3000/api/getAllFood')
+      axios.get('http://localhost:3000/api/getAllFood', this.getOption())
         .then((res) => {
           this.state.favfood = res.data;
           this.setState({ favfood: this.state.favfood });
@@ -77,7 +77,7 @@ class App extends Component {
 
       this.state.food = []
       const url = 'https://openmensa.org/api/v2/canteens/'+this.state.lastMensa+'/days/'+this.state.date+'/meals'
-      axios.get(url, this.getOption())
+      axios.get(url)
         .then((res) => {
           this.state.food = res.data;
           this.state.food.forEach(item => {
