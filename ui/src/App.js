@@ -206,7 +206,10 @@ class App extends Component {
     return (
       // <Router>
         <div className="App">
-          <h1>Welcome to Appeteria</h1>
+          <div className="Header">
+            <h1>Welcome to Appeteria</h1>
+          </div>
+
           <div>
 
             <div>
