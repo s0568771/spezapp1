@@ -11,8 +11,6 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Divider from '@material-ui/core/Divider';
 import IconButton from "@material-ui/core/IconButton";
 
-
-
 // const Tech = ({match}) => {
 //   return <div>Current Route: {match.params.tech}</div>
 // };
@@ -98,7 +96,7 @@ class App extends Component {
     return this.options = {
       headers: {
         "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
-        "Access-Control-Allow-Origin": "null",
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,POST"
       }
     };
