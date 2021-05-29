@@ -19,6 +19,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 
 class App extends Component {
+  options;
   constructor(props) {
     super(props);
     this.state = {
@@ -76,7 +77,7 @@ class App extends Component {
 
       this.state.food = []
       const url = 'https://openmensa.org/api/v2/canteens/'+this.state.lastMensa+'/days/'+this.state.date+'/meals'
-      axios.get(url)
+      axios.get(url, this.getOption())
         .then((res) => {
           this.state.food = res.data;
           this.state.food.forEach(item => {
@@ -91,6 +92,16 @@ class App extends Component {
         })
 
     }
+  }
+
+  getOption(){
+    return this.options = {
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,POST"
+      }
+    };
   }
 
   iniDB() {
@@ -134,7 +145,7 @@ class App extends Component {
     // const options = {
     //   headers: {
     //     "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
-    //     "Access-Control-Allow-Origin": ".herokuapp.com, localhost:9000, localhost:3000",
+    //     "Access-Control-Allow-Origin": "*",
     //     "Access-Control-Allow-Methods": "GET,POST"
     //   }
     // };
@@ -148,7 +159,7 @@ class App extends Component {
           "name": fname
         }
         console.log(body)
-        axios.post('http://localhost:3000/api/insertFood', body);
+        axios.post('http://localhost:3000/api/insertFood', body, this.getOption());
       }
     })
 
