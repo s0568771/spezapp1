@@ -162,7 +162,7 @@ class App extends Component {
           "name": fname
         }
         // console.log(body)
-        axios.post('http://localhost:3000/api/insertFood', body);
+        axios.post('http://localhost:9000/api/insertFood', body);
       }
     })
 
