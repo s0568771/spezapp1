@@ -39,14 +39,6 @@ class App extends Component {
 
   componentDidMount() {
 
-    // const currentDate = new Date();
-    // this.state.dateToday =`${currentDate.getFullYear()}-${("00" + (currentDate.getMonth() + 1)).slice(-2)}-${("00" + currentDate.getDate()).slice(-2)}`;
-    // var date = new Date()
-    // var finaldate = date.getDate() + '-' +  (date.getMonth() + 1)  + '-' +  date.getFullYear()
-    // var finaldate1 = date.getFullYear() + '-' +  (date.getMonth() + 1)  + '-' +  date.getDate()
-    // this.state.dateToday = finaldate1;
-    // console.log(finaldate1)
-
     //Openmensa init: Datenabruf
     this.iniDB();
 
@@ -77,7 +69,6 @@ class App extends Component {
 
       axios.get('http://localhost:3000/api/getAllFood')
         .then((res) => {
-          // this.vectorToJSON(res.data)
           this.state.favfood = res.data;
           this.setState({ favfood: this.state.favfood });
           console.log(this.state)
@@ -102,16 +93,6 @@ class App extends Component {
     }
   }
 
-  // vectorToJSON(vector) {
-  //   console.log(vector)
-  //   var temp = vector.split('(')
-  //   console.log(temp)
-  //   temp.forEach(item => {
-  //     var temp1 = item.split(',')
-  //     console.log(temp1)
-  //   })
-  // }
-
   iniDB() {
     axios.get('https://openmensa.org/api/v2/canteens/').then(response => response.data)
       .then((data) => {
@@ -125,8 +106,6 @@ class App extends Component {
     console.log('save')
     console.log(e.target.value)
     // var food = new Food("1", "test")
-
-
 
     // this.state.mensen.forEach(item => {
     //   axios.post('http://localhost:9000/api/insert', item, {
@@ -152,13 +131,13 @@ class App extends Component {
   }
 
   handleChange(event) {
-    const options = {
-      headers: {
-        "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
-        // "Access-Control-Allow-Origin": "http://localhost/",
-        "Access-Control-Allow-Methods": "GET,POST"
-      }
-    };
+    // const options = {
+    //   headers: {
+    //     "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
+    //     // "Access-Control-Allow-Origin": "http://localhost/",
+    //     "Access-Control-Allow-Methods": "GET,POST"
+    //   }
+    // };
 
     this.state.food.forEach( f => {
       const fid = f.id.toString();
@@ -169,7 +148,7 @@ class App extends Component {
           "name": fname
         }
         console.log(body)
-        axios.post('http://localhost:3000/api/insertFood', body, options);
+        axios.post('http://localhost:3000/api/insertFood', body);
       }
     })
 
