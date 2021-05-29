@@ -37,7 +37,7 @@ class HomeController @Inject()(foodDAO: FoodDAO, mensaDAO: MensaDAO, cc: Control
   }
 //  def deleteFood() = Action.async { implicit request =>
 //    val food: Food = foodForm.bindFromRequest.get
-//    foodDAO.delete(food).map(_ => Redirect(routes.FrontendController.index()))
+//    foodDAO.delete(food.id.toInt).map(_ => Redirect(routes.FrontendController.index()))
 //  }
   def getAllFood() = Action.async { implicit request =>
     foodDAO.all().map{ food => Ok(Json.toJson(food.toString()))}

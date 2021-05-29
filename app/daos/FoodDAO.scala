@@ -18,7 +18,7 @@ class FoodDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   def insert(food: Food): Future[Unit] = {
     db.run(Foods.insertOrUpdate(food)).map { _ => () }
   }
-//  def delete(food: Food): Future[Unit] = db.run(Foods.filter(_.id === food.id).delete)
+//  def delete(id: Int): Future[Unit] = db.run(Foods.filter(_.id === id).delete)
 
   //  def searchByPrice(price: Int): Future[Seq[Mensa]] = db.run(
   //    Mensen.filter(_.price === price)
