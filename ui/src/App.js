@@ -83,7 +83,7 @@ class App extends Component {
           console.log(this.state)
         })
 
-
+      this.state.food = []
       const url = 'https://openmensa.org/api/v2/canteens/'+this.state.lastMensa+'/days/'+this.state.date+'/meals'
       axios.get(url)
         .then((res) => {
@@ -280,7 +280,7 @@ class App extends Component {
                                   {console.log(food)}
                                   <Checkbox
                                     value={food.id}
-                                    defaultchecked={true}
+                                    defaultChecked={true}
                                     // onChange={e => this.handleChange(e)}
                                     inputProps={{ 'aria-label': 'primary checkbox' }}
                                   />

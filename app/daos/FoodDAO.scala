@@ -1,10 +1,10 @@
 package daos
 
+import javax.inject.Inject
 import model.Food
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
-import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 class FoodDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
@@ -18,6 +18,7 @@ class FoodDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   def insert(food: Food): Future[Unit] = {
     db.run(Foods.insertOrUpdate(food)).map { _ => () }
   }
+//  def delete(food: Food): Future[Unit] = db.run(Foods.filter(_.id === food.id).delete)
 
   //  def searchByPrice(price: Int): Future[Seq[Mensa]] = db.run(
   //    Mensen.filter(_.price === price)

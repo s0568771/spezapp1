@@ -9,6 +9,7 @@ GET     /api/getAll                 controllers.HomeController.getAll()
 GET     /api/getAllFood             controllers.HomeController.getAllFood()
 
 POST    /api/insert                 controllers.HomeController.insertProdukt
+POST    /api/delete                 controllers.HomeController.deleteFood
 POST    /api/insertFood             controllers.HomeController.insertFood
 #GET     /env                        controllers.FrontendController.env()
 #GET     /api/get                    controllers.FrontendController.getMensen()
