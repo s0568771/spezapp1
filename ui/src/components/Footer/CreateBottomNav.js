@@ -1,8 +1,8 @@
 import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {makeStyles, withStyles} from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import {IconSpeiseangebot, IconMensen} from "../ServicesAPI/CreateIconSVG";
+import {IconMensen, IconSpeiseangebot} from "../ServicesAPI/CreateIconSVG";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles(
@@ -29,8 +29,8 @@ export default function MyBottomNav() {
 		root: {
 			color: 'rgba(255, 255, 255, 0.74)',
 			maxWidth: "none",
-			"&$selected": { 
-				color: "rgb(255,255,255)", 
+			"&$selected": {
+				color: "rgb(255,255,255)",
 			},
 		},
 		selected: {//muss leer sein, nicht entfernen

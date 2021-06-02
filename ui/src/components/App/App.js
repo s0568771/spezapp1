@@ -6,7 +6,6 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import User from '../../components/User/User';
 import Home from '../../components/Home/Home';
-import Mensen from '../Mensen/Mensen'
 import Setting from '../Settings/Setting'
 import FavFood from '../FavFood/FavFood'
 import AboutUs from '../AboutUs/AboutUs'
@@ -16,7 +15,7 @@ import {getUser} from "../ServicesAPI/UserAPI";
 import {openPopUp} from "../ServicesAPI/CreatePopUp";
 import {getGeolocationToLocalstore} from "../ServicesAPI/GeoAPI";
 import MensenChoose from "../Mensen/MensenChoose";
-import getMensen from "../ServicesAPI/MensenAPI";
+
 // import firebase from '../../firebase';
 
 class App extends Component {

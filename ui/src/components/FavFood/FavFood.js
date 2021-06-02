@@ -1,5 +1,5 @@
 import './FavFood.css';
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Divider} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
@@ -23,7 +23,7 @@ class FavFood extends Component{
             this.state.currentFav = this.state.user.favFood;
         }
     }
-    
+
     componentDidMount() {
     	let elementToFocus = document.getElementById("searchFavFoodField");
     	if (elementToFocus) {
@@ -31,7 +31,7 @@ class FavFood extends Component{
     	}
     	this.setState({favFood_containerRef: this.state.favFood_containerRef});
     }
-    
+
     handleInputChange = (e) => {
         let search = e.target.value.toUpperCase().trim();
         let results = [];
@@ -44,7 +44,7 @@ class FavFood extends Component{
                 results.push(food);
             }
         })
-        
+
         if (results.length === 0 && e.target.value.length === 0){
         	this.setState({ currentFav: getUser().favFood, isSearch: false});
         }else{
@@ -52,13 +52,13 @@ class FavFood extends Component{
         }
 
     }
-    
+
     onClickChangeFav(dishName, dishNotes, dishCategory/*foodID*/){
 		changeFavFood(dishName, dishNotes, dishCategory);
 		this.setState({ user: getUser()});
 		this.setState({ currentFav: getUser().favFood});
 	}
-    
+
     render(){
         return(
             <div className="favFood-container" ref={this.state.favFood_containerRef}>
@@ -72,7 +72,7 @@ class FavFood extends Component{
 								<IconFavFood style={{"height": "auto", width: "auto"}}/>
 							</div>
 						</div>
-					) : ( 
+					) : (
 						<div className = "favFood-search-container">
 							<div className="favFood-searchfield-container" id = "back-to-top-anchor">
 				                <TextField

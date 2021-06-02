@@ -1,10 +1,9 @@
 import './Footer.css';
 import '../../index.css'
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import stylePrimary900 from "../Style/Styles";
 import MyBottomNav from './CreateBottomNav'
-import { ThemeProvider } from '@material-ui/core/styles';
-import BottomNavigation from "@material-ui/core/BottomNavigation";
+import {ThemeProvider} from '@material-ui/core/styles';
 
 ;
 
@@ -13,7 +12,7 @@ class Footer extends Component{
     constructor(props) {
         super(props);
     }
-    
+
     render(){
         return(
             <div className='footer-container'>

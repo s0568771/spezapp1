@@ -1,8 +1,6 @@
 import './AboutUs.css';
 import '../../index.css'
-import React, { Component } from 'react';
-import stylePrimary900 from "../Style/Styles";
-import { ThemeProvider } from '@material-ui/core/styles';
+import React, {Component} from 'react';
 import {Divider} from "@material-ui/core";
 
 

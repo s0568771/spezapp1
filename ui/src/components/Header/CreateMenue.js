@@ -1,20 +1,16 @@
 import React from "react";
-import { makeStyles, styled } from "@material-ui/core/styles";
+import {makeStyles, styled} from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import SettingsIcon from '@material-ui/icons/Settings';
 import MenuIcon from "@material-ui/icons/Menu";
-import {Link} from "react-router-dom";
 
 
-
-	
 export default function MyMenue() {
 	const [state, setState] = React.useState({
 		menue: false,
@@ -36,7 +32,7 @@ export default function MyMenue() {
 		  "margin-right": "2em",
 		});
 
-	const list = 
+	const list =
 		<div role="presentation" onClick={toggleDrawer()} onKeyDown={toggleDrawer()}>
 			<MyList className="menueSettingText">
 				<a className='withoutHyperlink' href="/settings">
@@ -66,13 +62,13 @@ export default function MyMenue() {
 
 			</MyList>
 		</div>
-	
+
 	const useStyles = makeStyles({
 		  paper: {
 		    paddingTop: "10vh",
 		  },
 		});
-	
+
 	return (
 		<div>
 			<IconButton color="inherit" onClick={toggleDrawer()}>

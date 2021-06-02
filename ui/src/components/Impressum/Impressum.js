@@ -1,14 +1,6 @@
 import './Impressum.css';
 import '../../index.css'
-import React, { Component } from 'react';
-import stylePrimary900 from "../Style/Styles";
-import { ThemeProvider } from '@material-ui/core/styles';
-import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import {getRolle} from "../ServicesAPI/UserAPI";
-import Button from "@material-ui/core/Button";
+import React, {Component} from 'react';
 import {Divider} from "@material-ui/core";
 
 
