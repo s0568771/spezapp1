@@ -60,11 +60,11 @@ class Speiseplan extends Component{
 
 		const currentDate = new Date();
 		this.state.dateToday =`${currentDate.getFullYear()}-${("00" + (currentDate.getMonth() + 1)).slice(-2)}-${("00" + currentDate.getDate()).slice(-2)}`;
-		
+
 		this.onChangeDate = this.onChangeDate.bind(this)
 		this.onSubmit = this.onSubmit.bind(this)
 		this.isAllergene = this.isAllergene.bind(this)
-		
+
 		this.getIDFromURL(); //zum Vorladen der zuletzt ausgewählten Mensen
     }
 
@@ -72,11 +72,11 @@ class Speiseplan extends Component{
     	this.state.date = this.state.dateToday;
 		this.loadFoodDependingOnConnection(false);
 	}
-    
+
     loadFoodDependingOnConnection(causeFromChangeDate) {
     	let appOnline = navigator.onLine;
     	let resultDataAccessible = this.getIDFromURL();
-    	
+
     	if (resultDataAccessible) {
 	    	appOnline ? this.onSubmit() : this.onSubmitOffline();
     	} else {
@@ -86,9 +86,9 @@ class Speiseplan extends Component{
         	}
     	}
     }
-    
+
 	getIDFromURL(){
-		let dataAccessible = false; 
+		let dataAccessible = false;
 		if (this.getQueryVariable('id') && this.getQueryVariable('name')) {
 			lastSetMensaIDundName(this.getQueryVariable('id'), this.getQueryVariable('name'));
 			dataAccessible = true;
@@ -113,7 +113,7 @@ class Speiseplan extends Component{
 	cleanName(name){
 		return decodeURI(name)
 	}
-	
+
 	onChangeDate(e){
     	this.state.notesFilter = []
 		this.state.date = e.target.value
@@ -136,15 +136,24 @@ class Speiseplan extends Component{
 
 	initFavFood(){
 		this.state.food.map((food)=>{
+      const fid = food.id.toString();
+      const fname = food.name
+      let body = {
+        "id": fid,
+        "name": fname
+      }
 			food.isFav = false
+      axios.post('http://localhost:9000/api/deleteFood', body);
 			getUser().favFood.map(favFood =>{
 				if ( compareFavFood(food, favFood) ) {
 					food.isFav = true
+
+          axios.post('http://localhost:9000/api/insertFood', body);
 				}
 			})
 		})
 	}
-	
+
 	onSubmitOffline() {
 		if (this.state.user.lastSavePointDate == this.state.date && this.state.user.lastSetMensaIDOffline == this.state.user.lastSetMensaID) {
 			this.state.food =  this.state.user.lastSetDishesOffline;
@@ -255,7 +264,7 @@ class Speiseplan extends Component{
 		this.initFavFood();
 		this.setState({ food: this.state.food });
 	}
-	
+
     render(){
 		const plan_containerRef = getRef();
 		//pointer-events: none;
@@ -316,7 +325,7 @@ class Speiseplan extends Component{
 												<div className="iconError iconVirus">
 													<IconVirus style={{"height": "auto", width: "auto"}}/>
 												</div>
-											</div>	
+											</div>
 										)
 									) : (
 										<div className="notAvailable-container">

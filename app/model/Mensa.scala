@@ -1,4 +1,4 @@
 package model
 
-case class Mensa(id: String, name: String, city: String, address: String)
+case class Mensa(id: Int, name: String, city: String, address: String)
 

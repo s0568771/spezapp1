@@ -24,7 +24,7 @@ class MensaDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
 //      .result)
 
   private class MensaTable(tag: Tag) extends Table[Mensa](tag, "MENSEN") {
-    def id = column[String]("ID", O.PrimaryKey)
+    def id = column[Int]("ID", O.PrimaryKey)
     def name = column[String]("NAME")
     def city = column[String]("CITY")
     def address = column[String]("ADDRESS")

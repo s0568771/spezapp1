@@ -1,4 +1,4 @@
 package model
 
-case class Food(id: String, name: String)
+case class Food(id: Int, name: String)
 

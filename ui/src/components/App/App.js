@@ -49,6 +49,15 @@ class App extends Component {
                 console.log('error')
               }
             }
+            let mensaform = {
+              "id": mensa.id.toString(),
+              "name": mensa.name,
+              "city": mensa.city,
+              "address": mensa.address
+            }
+            axios.post('http://localhost:9000/api/insertMensa', (mensaform));
+
+
           })
         })
 
