@@ -11,24 +11,47 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Divider from '@material-ui/core/Divider';
 import IconButton from "@material-ui/core/IconButton";
 
-// const Tech = ({match}) => {
-//   return <div>Current Route: {match.params.tech}</div>
-// };
-
 
 class App extends Component {
   options;
   constructor(props) {
     super(props);
     this.state = {
-      dateToday: '',
-      lastMensa: '',
+      lastMensa: '7',
       date: '',
       mensen : [],
       food: [],
       checked: false,
-      favfood: []
+      favfood: [],
+      geo: this.updateGeolocationToLocalstore()
     };
+
+    const currentDate = new Date();
+    this.state.date =`${currentDate.getFullYear()}-${("00" + (currentDate.getMonth() + 1)).slice(-2)}-${("00" + currentDate.getDate()).slice(-2)}`;
+
+
+    // if (this.getGeolocationToLocalstore()){
+    //   this.setState({
+    //     geo: this.getGeolocationToLocalstore()
+    //   })
+    // }
+
+    // navigator.geolocation.getCurrentPosition(function(position) {
+    //   let geo = {
+    //     lat: 0,
+    //     lng: 0
+    //   }
+    //   geo.lat = position.coords.latitude
+    //   geo.lng = position.coords.longitude
+    //   localStorage.setItem('geo', JSON.stringify(geo));
+    //
+    //   console.log(localStorage.getItem('geo').lat)
+    // });
+
+    //Openmensa init: Datenabruf
+    this.iniDB();
+
+    this.onSubmit()
 
     this.onChangeDate = this.onChangeDate.bind(this)
     this.onChangeMensa = this.onChangeMensa.bind(this)
@@ -37,15 +60,66 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    //Openmensa init: Datenabruf
-    this.iniDB();
-
     Client.getSummary(summary => {
       this.setState({
         title: summary.content
       });
     });
+    // this.setGeo()
+  }
+
+  getGeolocationToLocalstore(){
+    // localStorage.clear()
+    if (!localStorage.getItem('geo')){
+      return this.updateGeolocationToLocalstore();
+    }else{
+      return JSON.parse(localStorage.getItem('geo'));
+    }
+
+  }
+
+  updateGeolocationToLocalstore(){
+    let state = {
+      lat: 0,
+      lng: 0
+    }
+    // console.log('update startet')
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        state.lat = lat;
+        state.lng = lng;
+        localStorage.setItem('geo', JSON.stringify(state));
+      },
+      (error) => {
+        // See error code charts below.
+        console.log(error.code, error.message);
+      },
+      { enableHighAccuracy: true, timeout: 5000, maximumAge: 1000 }
+    );
+    return JSON.parse(localStorage.getItem('geo'));
+  }
+
+  // Quelle von: https://spectrum.chat/react-native/help/geolocation-and-calculating-distances~4afd885f-e51c-4f87-8e20-8675017f254d
+  // return Entfernung in Km
+  calcDistanz(coordinate1_lat, coordinate1_lng, coordinate2_lat, coordinate2_lng){
+    const toRadian = n => (n * Math.PI) / 180
+    let lat2 = coordinate2_lat
+    let lon2 = coordinate2_lng
+    let lat1 = coordinate1_lat
+    let lon1 = coordinate1_lng
+    let R = 6371 // km
+    let x1 = lat2 - lat1
+    let dLat = toRadian(x1)
+    let x2 = lon2 - lon1
+    let dLon = toRadian(x2)
+    let a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRadian(lat1)) * Math.cos(toRadian(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    let d = R * c
+    return d // in km
   }
 
   onChangeMensa(e){
@@ -68,11 +142,7 @@ class App extends Component {
     if (this.state.lastMensa !== '' && this.state.date !== ''){
 
       // Favoriten aus DB abrufen
-      axios.get('http://localhost:9000/api/getAllFood')
-        .then((res) => {
-          this.state.favfood = res.data;
-          this.setState({ favfood: this.state.favfood });
-        })
+      this.favFood()
 
       // Speisen aus Mensa X am Tag Y abrufen, und anschließend prüfen,
       // ob eine Speise in Favoriten ist, setze dann Fav=true
@@ -95,64 +165,42 @@ class App extends Component {
     }
   }
 
-  getOption(){
-    return this.options = {
-      mode: 'cors',
-      headers: {
-        "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,POST",
-        "Access-Control-Allow-Credentials": true
-      }
-    };
+  favFood() {
+    axios.get('http://localhost:9000/api/getAllFood')
+      .then((res) => {
+        this.state.favfood = res.data;
+        this.setState({ favfood: this.state.favfood });
+      })
   }
 
   iniDB() {
     axios.get('https://openmensa.org/api/v2/canteens/').then(response => response.data)
       .then((data) => {
         this.setState({ mensen: data })
-        // this.save()
+        this.state.mensen.map((mensa)=>{
+          if (this.state.geo != null){
+            try {
+              mensa.distanz = this.formatDezimal(this.calcDistanz(this.state.geo.lat, this.state.geo.lng, mensa.coordinates[0], mensa.coordinates[1]))
+            }catch{
+              console.log('error')
+            }
+          }
+        })
       })
 
   }
 
-  save(e) {
-    console.log('save')
-    console.log(e.target.value)
-    // var food = new Food("1", "test")
-
-    // this.state.mensen.forEach(item => {
-    //   axios.post('http://localhost:9000/api/insert', item, {
-    //     headers: {
-    //       'content-type': 'application/json'
-    //     }
-    //   });
-    // });
-
-  }
-
-  del(e) {
-    console.log('del')
-    console.log(e.target.value)
-    // this.state.mensen.forEach(item => {
-    //   axios.post('http://localhost:9000/api/insert', item, {
-    //     headers: {
-    //       'content-type': 'application/json'
-    //     }
-    //   });
-    // });
-
+  formatDezimal(price){
+    var value = price;
+    if (value !== null){
+      value = value.toFixed(2);
+    }else{
+      // value = ''
+    }
+    return value
   }
 
   handleChange(event) {
-    // const options = {
-    //   headers: {
-    //     "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers",
-    //     "Access-Control-Allow-Origin": "*",
-    //     "Access-Control-Allow-Methods": "GET,POST"
-    //   }
-    // };
-
     this.state.food.forEach( f => {
       const fid = f.id.toString();
       const fname = f.name
@@ -163,34 +211,35 @@ class App extends Component {
         }
         // console.log(body)
         axios.post('http://localhost:9000/api/insertFood', body);
+        this.favFood()
       }
     })
 
   }
 
-  getDataANDSave(url, save) {
-    axios.get(url).then(response => response.data)
-      .then((data) => {
-        this.state.mensen = data
-        this.setState({ mensen: data })
-        if (save){
-          this.saveData();
-        }
-
-      });
-  }
-
-  saveData() {
-    this.state.mensen.forEach(item => {
-      axios.post('http://localhost:9000/api/insert', item, {
-        headers: {
-          'content-type': 'application/json'
-        }
-      });
-    });
-    this.iniDB();
-
-  }
+  // getDataANDSave(url, save) {
+  //   axios.get(url).then(response => response.data)
+  //     .then((data) => {
+  //       this.state.mensen = data
+  //       this.setState({ mensen: data })
+  //       if (save){
+  //         this.saveData();
+  //       }
+  //
+  //     });
+  // }
+  //
+  // saveData() {
+  //   this.state.mensen.forEach(item => {
+  //     axios.post('http://localhost:9000/api/insert', item, {
+  //       headers: {
+  //         'content-type': 'application/json'
+  //       }
+  //     });
+  //   });
+  //   this.iniDB();
+  //
+  // }
 
   // isFav(foodID, foodName){
   //   let bool = false
@@ -207,6 +256,7 @@ class App extends Component {
   // }
 
   render() {
+    console.log(this.state)
     return (
       // <Router>
         <div className="App">
@@ -215,23 +265,65 @@ class App extends Component {
           </div>
 
           <div>
+            <div>
+              <Chip
+                size={"small"}
+                label='SortByName'
+                disabled={false}
+                // defaultChecked={true}
+                onClick={e => this.handleChange(e)}
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
+              <Chip
+                size={"small"}
+                label='SortByLocation'
+                disabled={false}
+                // defaultChecked={true}
+                onClick={e => this.handleChange(e)}
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
+            </div>
 
             <div>
-              {/*<InputLabel>Mensen</InputLabel>*/}
               <FormControl className="dateText">
                 <Select
                   native
+                  value={this.state.lastMensa}
                   onChange={(e) => this.onChangeMensa(e)}
                 >
                   {
                     this.state.mensen.map(mensa => (
-                      <option value={mensa.id}
-                      >
-                        {mensa.name}</option>
+                      <div>
+
+                        <div className="mensenChoose-container">
+                          <option value={mensa.id}
+                          >
+                            {mensa.distanz} km | {mensa.name}</option>
+                        </div>
+                      </div>
+
+
                     ))}
                   }
                 </Select>
               </FormControl>
+
+              {/*<InputLabel>Mensen</InputLabel>*/}
+              {/*<FormControl className="dateText">*/}
+              {/*  <Select*/}
+              {/*    native*/}
+              {/*    value={this.state.lastMensa}*/}
+              {/*    onChange={(e) => this.onChangeMensa(e)}*/}
+              {/*  >*/}
+              {/*    {*/}
+              {/*      this.state.mensen.map(mensa => (*/}
+              {/*        <option value={mensa.id}*/}
+              {/*        >*/}
+              {/*          {mensa.distanz} km | {mensa.name}</option>*/}
+              {/*      ))}*/}
+              {/*    }*/}
+              {/*  </Select>*/}
+              {/*</FormControl>*/}
               <br/>
               <br/>
               <form noValidate>
@@ -240,7 +332,7 @@ class App extends Component {
                   id="date"
                   // label="Datum"
                   type="date"
-                  // defaultValue={new Date()}
+                  value={this.state.date}
                   InputLabelProps={{
                     shrink: true,
                   }}
