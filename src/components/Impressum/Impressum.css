@@ -1,0 +1,34 @@
+
+.pt-24{
+    padding-top: 24px;
+}
+.s-28{
+    font-size: 18px;
+}
+.title p, .text p{
+    margin: 0px;
+}
+.fw-700{
+    font-style: normal;
+    font-weight: 700;
+}
+.title, .text{
+    position: relative;
+    left: 0%;
+    right: 0%;
+    padding-left: 10%;
+    padding-right: 10%;
+
+    line-height: 24px;
+
+    /*text-align: center;*/
+    letter-spacing: 0.15px;
+
+    color: #0D47A1;
+}
+.welcomeTitle {
+    top: 7%;
+}
+.welcomeText {
+    top: 14%;
+}

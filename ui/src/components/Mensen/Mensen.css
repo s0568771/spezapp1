@@ -1,0 +1,110 @@
+.mensa-container{
+	position: relative;
+	width: 100%;
+	height: 80%;
+	overflow: auto;
+	vertical-align: top;
+}
+.mensa-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+.mensa-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.mensa-institute-container{
+	position: relative;
+	left: 0%;
+	right: 0%;
+	width: 60%;
+	
+	/*font-family: Roboto;*/
+	font-style: normal;
+	font-weight: normal;
+}
+.mensa-all-container p {
+	margin: 0px;
+}
+
+.mensa-search-container, .mensa-all-container {
+	position: relative;
+	width: 100%;
+}
+.mensa-all-container{
+	padding-top: 24px;
+}
+.mensa-search-container{
+	padding-top: 10px;
+}
+.mensa-searchfield-container, .mensa-card-container, .mensa-divider-container {
+	position: relative;
+	left: 0%;
+	right: 0%;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+.mensa-search-container {
+	margin-top: 1%;
+}
+.searchFieldMensa {
+	width: 100%;
+	border-radius: 0px;
+}
+
+.mensa-institute-name {
+	font-size: 18px;
+	line-height: 150%;
+	letter-spacing: 0.15px;
+	
+	color: rgba(0, 0, 0, 0.87);	
+}
+.mensa-institute-street, .mensa-institute-postcode {
+	font-size: 14px;
+	line-height: 143%;
+	letter-spacing: 0.25px;
+	
+	color: rgba(0, 0, 0, 0.6);
+}
+.mensa-location-distance {
+	font-size: 9px;
+	line-height: 160%;
+	letter-spacing: 0.4px;
+	
+	color: #000000;
+}
+
+.mensa-card-container {
+	margin: 3.25% 0;
+	display: flex;
+}
+.mensa-icon-container {
+	width: 45%;
+	display: flex;
+	flex-flow: row-reverse;
+}
+.mensa-location-icon, .mensa-chevro-icon {
+	margin-top: auto;
+	margin-bottom: auto;
+	text-align: center;
+
+}
+
+.mensa-location-icon{
+	width: 56px;
+}
+
+.mensa-star-icon{
+	margin-top: auto;
+	margin-bottom: auto;
+	text-align: center;
+	padding: 0 5px;
+}
+
+.MuiIconButton-root{
+	padding: 5px !important;
+}
+
+.mensenChoose-container{
+	width: 100%;
+}

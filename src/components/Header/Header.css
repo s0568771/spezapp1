@@ -1,0 +1,52 @@
+.header-container{
+    width: 100%;
+    height: 10%;  /* 48px das icon */
+    /*z-index: 100;*/
+
+}
+.appBar {
+	height: 10%;
+	justify-content:center;
+}
+.titleHeader{
+	width: auto;
+	text-align: left;
+	padding-left: 10px;
+}
+.title-container{
+	width: 100%;
+}
+.noSignalIcon{
+	color: white;
+}
+.menueHeaderText {
+	font-family: Roboto;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 24px;
+	letter-spacing: 0.15000000596046448px;
+	text-align: left;
+}
+
+.menueSettingText {
+	font-family: Roboto;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 8px;
+	letter-spacing: 0.10000000149011612px;
+}
+
+.MuiListItem-gutters{
+	padding-left: 29px !important;
+}
+
+.withoutHyperlink {
+	text-decoration: none;
+	color: black;
+}
+
+.logo{
+	width: 2px;
+}

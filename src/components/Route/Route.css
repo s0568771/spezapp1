@@ -1,0 +1,24 @@
+.route-container {
+	position: relative;
+	width: 100%;
+	height: 80%;
+	overflow: auto;
+	vertical-align: top;
+}
+
+.iconError {
+	margin: 0 auto;
+	margin-top: 1.5em;
+	max-width: 30vh;
+	
+	color: rgb(144, 202, 249);
+}
+
+.notAvailable-container {
+	position: relative;
+	left: 0%;
+	right: 0%;
+	top: 10%;
+	padding-left: 10%;
+	padding-right: 10%;
+}

@@ -1,0 +1,205 @@
+.plan-container {
+	position: relative;
+	width: 100%;
+	height: 80%;
+	overflow: auto;
+	vertical-align: top;
+}
+
+.plan-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+.plan-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.userContainer {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.dishField{
+	padding: 2% 0;
+}
+
+.containerInstitute, .containerDate, .containerDish{
+	position: relative;
+	left: 0%;
+	right: 0%;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+.containerInstitute {
+	top: 7%;
+}
+.containerDate {
+	top: 10%;
+}
+.instituteField, .dateField {
+	width: 100%;
+	border-radius: 0px;
+}
+.dateText {
+	width: 100%;
+}
+
+/*Elemente von Einzelnn Gerichten*/
+.containerDish{
+	top: 16%;
+	
+	/*font-family: Roboto;*/
+	font-style: normal;
+	font-weight: 400;
+	text-align: left;
+	
+	min-height: 60%;
+}
+
+.dishName{
+	width: auto;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.15000000596046448px;
+	
+	color: rgba(0, 0, 0, 0.87);
+}
+
+.dish-header {
+	width: 80%;
+	/*min-height: 35px;*/
+	display: inline-block;
+}
+.dishPrices p {
+	font-size: 9px;
+	/*Bei akuteller Asuwahl auf  700 sezten zu hervorheben!!!*/
+	/*font-weight: 700;*/
+	line-height: 5px;
+	letter-spacing: 0.25px;
+	float: left;
+	
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.dishCat p {
+	font-size: 10px;
+	line-height: 0px;
+	letter-spacing: 0.25px;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.dishChips{
+	padding-top: 32px;
+	padding-bottom: 16px;
+}
+
+.chip{
+	/*display: flex;*/
+	/*float: left;*/
+	padding: 1px;
+}
+
+.fett{
+	/*font-weight: bold;*/
+	font-weight: 700;
+}
+
+.dishTopDisplay {
+	width: auto;
+	height: auto;
+	vertical-align: top;
+}
+.dish-favIcon{
+	display: inline-block;
+	float: right;
+	width: auto;
+}
+
+.dishBtnBackTop {
+	position: fixed; 
+	bottom: 13%;
+	right: 3%;
+}
+
+.notAvailable-container {
+	position: relative;
+	text-align: center;
+}
+.load-container {
+	text-align: center;
+	padding-top: 0em;
+}
+.mensaChoosedText, .mensaNotChoosenText {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 120%;
+	
+	letter-spacing: 0.15px;
+}
+.mensaChoosedText {
+	color: rgb(144, 202, 249);	
+}
+.mensaNotChoosenText {
+	color: rgb(13, 71, 161);
+}
+
+.loading-indicator:before {
+    content: '';
+    background: #000000cc;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.loading-indicator:after {
+    content: 'Loading';
+    position: fixed;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    z-index: 1001;
+    color:white;
+    text-align:center;
+    font-weight:bold;
+    font-size:1.5rem;        
+}
+
+.closeSearch-container {
+	position: absolute;
+	top: 0.125em;
+	right: 0.125em;
+	z-index: 6;
+}
+.mensenChoose-container {
+    margin-top: -1.0em;
+    display: inline-block;
+    z-index: 2;
+}
+
+.iconVirus{
+	transform: rotate(10.37deg);
+}
+.iconError {
+	margin: 0 auto;
+	margin-top: 1.5em;
+	max-width: 30vh;
+	
+	color: rgb(144, 202, 249);
+}
+.s-12 {
+	font-size: 12px;
+}
+.MuiSvgIcon-colorPrimary{
+	/*Herzen werden dadurch weiter rechts angezeigt - Verticale Linie mit anderen ICONs*/
+	margin-right: -5px;
+	/*top: -35px;*/
+}
+
+.notes{
+	color: #FFFFFF !important;
+	font-size: 0.7em !important;
+}

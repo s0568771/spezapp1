@@ -1,0 +1,76 @@
+.setting-container {
+	position: relative;
+	width: 100%;
+	height: 80%;
+	overflow: auto;
+	vertical-align: top;
+}
+
+.setting-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+.setting-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.personal-title-container p, .noti-title-container p, .allergene-container p {
+	margin: 0px;
+}
+
+.personal-title-container, .noti-title-container,  .allergene-title-container {
+
+	position: relative;
+	left: 0%;
+	right: 0%;
+	padding-left: 10%;
+	padding-right: 15%;
+	margin-top: 1.25em;
+	margin-bottom: 0.5em;
+	
+	/*font-family: Roboto;*/
+
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 24px;
+	letter-spacing: 0.15000000596046448px;
+	text-align: left;
+	
+	color: rgba(13, 71, 161, 1);
+
+}
+
+.personal-container, .noti-container, .allergene-container, .allergene-row-container{
+	position: relative;
+	width: 100%;
+	margin-bottom: 5%;
+}
+
+.personal-place-container, .personal-role-container, .noti-form-container, .allergene-select-container{
+	position: relative;
+	left: 0%;
+	right: 0%;
+	padding-left: 10%;
+	padding-right: 10%;
+	margin-top: 1em;
+}
+
+.allergene-name-container {
+	width: 70%;
+}
+.allergene-switch-container {
+	float: right;
+}
+
+.placeFieldSetting, .roleFieldSetting, .notiFieldSetting {
+	width: 100%;
+	border-radius: 0px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+	/*background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path></svg>') no-repeat;*/
+	display: none;
+}
+
+
