@@ -136,7 +136,7 @@ class Speiseplan extends Component{
 
 	initFavFood(){
 		this.state.food.map((food)=>{
-      const fid = food.id.toString();
+      const fid = food.id;
       const fname = food.name
       let body = {
         "id": fid,
